@@ -1,0 +1,16 @@
+{
+  "name": "login-xp-playwright",
+  "version": "1.0.0",
+  "description": "Projeto de testes de login com Playwright",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "author": "Fernando Papito",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.12.0"
+  }
+}
