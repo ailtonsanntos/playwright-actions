@@ -5,21 +5,29 @@ on:  # trigger que vai definir quando vai ser executado
   pull_request:
     branches: [ main, master ]
 jobs:  # Tarefas a ser executada
-  test:
+  e2e-testes:
     timeout-minutes: 60
     runs-on: ubuntu-latest  # Nessa etapa que o workflow define quem vai rodar os testes - basicamente uma máquina virtual
     steps:  # Steps que serão executados
-      - uses: actions/checkout@v4  # Uses - sempre tá ativando um plugin no github action
-      - uses: actions/setup-node@v4
+      - name: Get code
+        uses: actions/checkout@v4  # Uses - sempre tá ativando um plugin no github action
+
+      - name: Install Node
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install dependencies
         run: npm install  # Run -> Execuções das dependências para funcionar no ambiente ubuntu
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
+
+      - name: Run E2E tests
         run: npx playwright test
-      - uses: actions/upload-artifact@v4
+
+      - name: Publish HTML Report
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
