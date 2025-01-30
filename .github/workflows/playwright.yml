@@ -4,6 +4,7 @@ on:  # trigger que vai definir quando vai ser executado
     branches: [ main, master ]  # 1ª Condição quando tivermos um push na branch main e master
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
 jobs:  # Tarefas a ser executada
   e2e-testes:
     timeout-minutes: 60
